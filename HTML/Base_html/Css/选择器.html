@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择器</title>
+    <link rel="stylesheet" href="./css/comons.css">
+    <style>
+        /* 标签选择器 */
+        div{
+            color: aquamarine;
+        }
+        /* id选择器 */
+        #manu{
+            background-color: violet;
+        }
+        /* 类选择器 */
+        .explain{
+            color: cornflowerblue;
+        }
+        /* 层级选择器 */
+        span .explain{
+            color: red;
+        }
+        /* 组合选择器 */
+        .h3,.h4,.h5{
+            background-color: gray;
+        }
+        /* 伪类选择器 */
+        /* 补充属性选择器 */
+    </style>
+</head>
+<body>
+    <!-- 标签属性样式高于 单独css文件样式-->
+    <div>认识样式</div>
+    <!-- 添加id属性 -->
+    <p id="manu">一级菜单</p>
+    <!-- 添加类属性 -->
+    <ul>
+        <li class="explain">说明</li>
+        <li>理解</li>
+    </ul>
+    <span>
+        <p class="explain">
+            备注: <input placeholder="解释解释!">
+        </p>
+    </span>
+    <h3 class="h3">三级标题</h3>
+    <h3 class="h4">三级标题</h3>
+    <h3 class="h5">三级标题</h3>
+</body>
+</html>

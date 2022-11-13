@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        .pg-header{
+            height: 44px;
+            background-color: #2459a2;
+            /* 设置行间的距离 */
+            /* 以当前44高度去居中 */
+            line-height: 44px;
+        }
+        .w{
+            width: 980px;
+            /* auto 是自适应的意思，auto是很多尺寸值的默认值，也就是由浏览器自动计算
+            使用auto属性后，父元素宽度发生变化，该元素的宽度也会随之变化。 */
+            margin: 0 auto;
+        }
+        ul{
+            margin: 0;
+            /* list-style是设置列表li的样式 */
+            list-style: none;
+        }
+        ul li{
+            float: left;
+            padding: 0 8px 0 8px;
+            cursor: pointer;
+        }
+        /* 伪类选择器 */
+        /* 当鼠标移动到li标签时，自用应用以下样式 */
+        ul li:hover{
+            background-color: rgb(102, 153, 153);        
+        }
+    </style>
+</head>
+<body>
+    <div class="pg-header">
+        <div class="w">
+            <ul>
+                <li>菜单一</li>
+                <li>菜单二</li>
+                <li>菜单三</li>
+            </ul>
+        </div>
+    </div>
+    <div class="pg-body"></div>
+    <div class="pg-footer"></div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>相对定位</title>
+    <style>
+        #box-1{
+            width: 200px;
+            height: 200px;
+            background-color: antiquewhite;
+        }
+        #box-2{
+            width: 200px;
+            height: 200px;
+            background-color: rgb(68, 151, 118);
+            /*相对定位:
+                相对于当前标签定位, 以当前为参照移动指定距离
+                注意：相对定位的元素会占据原有的物理位置 
+            */
+            position: relative;
+            /* 移动定位元素 */
+            top: 200px;
+            left: 200px;
+
+        }
+        #box-3{
+            width: 200px;
+            height: 200px;
+            background-color: rgb(61, 59, 55);
+        }
+    </style>
+</head>
+<body>
+    <div id="box-1"></div>
+    <div id="box-2"></div>
+    <div id="box-3"></div>
+</body>
+</html>

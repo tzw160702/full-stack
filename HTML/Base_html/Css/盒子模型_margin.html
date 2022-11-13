@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盒子模型-(margin)外边距</title>
+    <style>
+        #box{
+            width: 620px;
+            height: 620px;
+            background: rebeccapurple;
+        }
+        #header{
+            width: 600px;
+            height: 200px;
+            background: yellow;
+            float: left;
+        }
+        #center1{
+            width: 200px;
+            height: 200px;
+            background: rgb(141, 141, 116);
+            float: left;
+        }
+        #center2{
+            width: 200px;
+            height: 200px;
+            background: rgb(140, 194, 151);
+            float: left;
+            /* 设置当前元素与其它元素之间的距离, 外间距 */
+            /* margin-top: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            margin-left: 10px; */
+
+            /* 与上边设置外间距效果一样， 顺序依次是: 上、右、下、左 */
+            margin: 10px 10xp 10px 10px;
+        }
+        #center3{
+            width: 200px;
+            height: 200px;
+            background: rgb(22, 199, 28);
+            float: left;
+            
+        }
+        #footer{
+            width: 600px;
+            height: 200px;
+            background: rgb(192, 122, 68);
+            float: left;
+        }
+        .block{
+            width: 1200px;
+            background: yellowgreen;
+            /* 设置块状元素居中, 上下10像素、左右自动居中 */
+            margin: 10px auto;
+        }
+        #box-1{
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin-bottom: 100px;
+        }
+        #box-2{
+            width: 200px;
+            height: 200px;
+            background: rgb(129, 4, 4);
+            margin-top: 50px;
+        }
+        #father{
+            width: 500px;
+            height: 300px;
+            background: rgb(109, 37, 135);
+            /* 加一像素实线边框 */
+            border: 1px solid red;
+        }
+        #son{
+            width: 300px;
+            height: 100px;
+            background: rgb(33, 11, 225);
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="header">顶部元素</div>
+        <div id="center1">中间部分1</div>
+        <div id="center2">中间部分2</div>
+        <div id="center3">中间部分3</div>
+        <div id="footer">底部</div>
+    </div>
+    <div class="block">块状元素居中</div>
+    
+    <!-- 外间距合并, 注意：外间距只有上下合并, 以最大间距为主-->
+    <div>-------------------外间距合并----------------------</div>
+    <div id="box-1"></div>
+    <div id="box-2"></div>
+
+    <!-- 包含式外间距合并 -->
+    <div>-------------------包含式外间距合并-------------------</div>
+    <div id="father">
+        <div id="son"></div>
+    </div>
+    <!-- margin设置元素外边框的距离有以下特点 
+        1. 块级元素的垂直相邻外边距会合并
+        2. 行内元素实际上不占上下外边距，行内元素的的左右外边距不合并
+        3. 浮动元素的外边距也不会合并
+    -->
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基础布局</title>
+    <style>
+        .layout{
+            color: blue;
+            /* 颜色可以用RGB的方式写 #FF69B4 */
+            /* 颜色可以用RGB的方式写 rgb(25,180,10) */
+            background-color: antiquewhite;  
+            font-size: 15px;
+            /* 宽度有百分比，高度没有百分比 */
+            /* 相对父级标签占比 */
+            width: 100%;
+            height: 100px;   
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">基础页面布局</div>
+    <!-- <div style="width: 1000px; background-color: cadetblue;"> -->
+    <div style="width: 1000px;">  
+        <!-- 有宽度比限制 加起来不能超过100% -->
+        <div style="width: 30%; background-color: azure; float: left">相对于父标签</div>
+        <div style="width: 70%; background-color: wheat; float: left;">相对于父标签而言</div>
+    </div>
+</body>
+</html>

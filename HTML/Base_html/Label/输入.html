@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    
+</head>
+<body>
+    <form>
+        <!-- placeholder属性默认提示框的内容,  readonly只读属性,无法编辑 -->
+        测试reset: <input type="text" placeholder="输入框内提示信息" readonly='readonly'/>
+    </form>
+    <!-- 要提交的内容放到form表单内 -->
+    <!-- action提交的的地址, method提交方法 enctype提交格式  -->
+    <form action="" method="" enctype="multipart/form-data">
+        <!-- 标签可以嵌套且每个标签可以指定不同样式，如果标签内的标签没有设置样式，则使用最外层标签样式 -->
+        <div style="border: 2px solid green;">
+            <!-- 明文 -->
+            <p>姓名:<input type="text" /></p> 
+            <!-- 自动校验邮箱的格式 -->
+            <p>邮箱:<input type="email" /></p>     
+            <!-- 密文 -->
+            <p>密码:<input type="password" /></p> 
+            <!-- 单选项互斥， name属性值相同即可  name属性值(radio) 单选框-->
+            <p>性别(单选框): 
+                <!-- 对于特殊属性值 radio 或者 checkbox  需要手动添加返回值 -->
+                男<input type="radio" name="only" value="1"/> 
+                女<input type="radio" name="only" value="0"/>
+            </p>         
+            <!-- name属性值(checkbox) 复选框 可以取消-->
+            <p>爱好(复选框):<br /> 
+                健身<input name="favor" type="checkbox" value="1"/> 
+                旅游<input name="favor" type="checkbox" value="2"/> 
+                女<input name="favor" type="checkbox" value="2"/>
+            </p> 
+            <p>城市:
+                <!-- 选择标签 -->
+                <!-- name属性用于后端获取值 -->
+                <select name="city">
+                    <!-- 选项标签 需要和select标签搭配使用 -->
+                    <option value="陕西">陕西</option>
+                    <option>四川</option>
+                    <option>北京</option>
+                </select>
+                <!-- 可以做多级联动,点击陕西省后自动带出陕西省的所有省市 需要js来完成 -->
+                <select>
+                    <option>陕西</option>
+                    <option>四川</option>
+                    <option>北京</option>
+                </select>
+                <!-- 直接将所有选项展示 使用ctrl 可以多选, 设置size="", 超过设置的选项会自动增加滚动条-->
+                <select multiple size="4">
+                    <option>陕西</option>
+                    <option>四川</option>
+                    <option>北京</option>
+                    <option>山东</option>
+                    <option>新疆维吾尔自治区</option>
+                    <option>西藏自治区</option>
+                </select>
+                <select>
+                    <!-- 对option进行分组 -->
+                    <optgroup label="列表">
+                        <option>索引</option>
+                        <option>切片</option>
+                        <option>修改</option>
+                    </optgroup>
+                    <optgroup label="字符串">
+                        <option>增</option>
+                        <option>删</option>
+                        <option>改</option>
+                        <option>查</option>
+                    </optgroup>
+                </select>
+            </p>
+            <!-- 文件 -->
+            <p>文件: <input type="file" name="image_file"/></p>
+            <!-- 多行输入 -->
+            <p>描述: <textarea name="extra" ></textarea></p>
+            <!-- 会做提交操作 -->
+            <input type="submit" value="提交当前表单" />        
+            <!-- 默认什么作用都没有 按钮-->
+            <input type="button" value="按钮" />
+            <!-- 只会清空当前form表单内填写的内容， 嵌套到当前外的form表单填写的内容也会被清空 -->
+            <input type="reset" value="重置表单" />        
+        </div>
+    </form>
+</body>
+</html>

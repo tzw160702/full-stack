@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初步认识js</title>
+    <!-- <link rel="stylesheet" href="CSS文件路径" /> -->
+    <style>
+        /* 内部编写CSS代码 */
+    </style>
+</head>
+<body>
+    <h1>HTML标签和样式</h1>
+    
+    <!-- 独立js文件，可以被多个引入之后使用 -->
+    <!-- <Script type="text/javascript" src="./js/commons.js"></Script> -->
+    
+    <!-- 直接使用 -->
+    <!-- Script代码块，只能在当前页面使用。 -->
+    <!-- 应用场景：多个页面公共功能可以放入文件，避免重复编写。 -->
+    
+    <!-- js基础语法 -->
+    <!-- js代码都一般放在body标签的【底部】 -->
+    <!-- 浏览器在解析HTML、CSS、JavaScript文件时，是按照从上到下逐步解释并执行，
+    如果JavaScript代码或文件放在head中可能会有因为耗时（网络请求或代码）导致页面显示速度太慢，影响用户感受 -->
+    <!-- <Script type="text/javascript">
+        // 内部编写JavaScript代码
+        // alert('456')
+    </Script> -->
+    <Script type="text/javascript">
+        // 全局变量
+        gender = "男"
+        
+        // 定义函数
+        function info(){
+            // 局部变量
+            var name = "zhouyuan"
+            
+            // 全局变量
+            age = 18    
+        }
+        info();
+        console.log(name)     // name是局部变量，外部无法获取。
+        console.log(age)    
+    </Script>
+
+</body>
+</html>

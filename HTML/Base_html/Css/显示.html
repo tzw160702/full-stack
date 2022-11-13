@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display显示</title>
+</head>
+<body>
+    <div>直接不显示之前的内容</div>
+    <!-- display: none 直接不显示，忽略掉内容 -->
+    <div style="display: none;">直接不显示</div>
+
+    <!-- visibility: hidden 内容被隐藏但还是会显示空白 -->
+    <div>隐藏行之前</div>
+    <div style="visibility: hidden; color: blueviolet; background-image: rgb(194, 138, 64);">内容隐藏,所占行还是会显示</div>
+    <div>隐藏行之后</div><p></p>
+    <!-- 块级标签 ——> 占整行 -->
+    <!-- 内联标签 ——> 占对应字段长度 -->
+    <div style="background-color: greenyellow;">块级标签</div>
+    <!-- 块级标签转为行内标签(内联标签) display: inline-->
+    <div style="display: inline; background-color: greenyellow;">行内标签</div><p></p>
+    <!-- 内联标签转为块级标签 display: block-->
+    <span style="display: block; background-color: red;">内联标签</span>
+    <!-- 纯内联标签设置高度宽度都不生效 -->
+    <span style="background-color: red;">内联标签</span><p></p>
+    <!-- display: inline-block 具有内联标签的属性和块级标签的属性 -->
+    <span style="display: inline-block; height: 50px; background-color: red;">内联标签</span>
+</body>
+</html>

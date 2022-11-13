@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display属性</title>
+    <style>
+        div, span{
+            width: 200px;
+            height: 200px;
+        }
+        div{
+            /* 设置为行内元素 */
+            /* display: inline; */
+            background: rebeccapurple;
+            /* 设置行内块级元素, 具有宽高属性，并且不会独占一行 */
+            /* display: inline-block; */
+            /* she设置为表格单元格 */
+            /* display: table-cell; */
+            
+            /* 隐藏元素,不占据原有物理位置*/
+            /* display: none; */
+            
+            /* 隐藏元素,占据原有物理位置*/
+            /* visibility: hidden; */
+            /* 如果元素是visibilit: hidden;设置的隐藏方式, 那么只能用visibility: visible;的方式来让元素显示 */
+            /* visibility: visible; */
+
+            /* 总结
+                visibility：设置元素是否显示
+                值：
+                    hidden   隐藏
+                    visible  显示
+                *注意：visibility: hidden; 与 display: none;的区别: visibility方式仅隐藏了内容的显示,其占用的空间依旧占用，
+                    而display方式彻底隐藏该元素的内容和位置。
+            */
+
+            /* 设置元素不透明度, 值范围：0-1 */
+            opacity: 0.3;
+        }
+        span{
+            background: yellow;
+            /* 设置为块级元素 */ 
+            /* display: block; */
+        }
+    </style>
+</head>
+<body>
+    <!-- div具有宽高属性，并且独占一行 -->
+    <div>块状元素</div>
+    <!-- <div>块状元素</div>
+    <div>块状元素</div>
+    <div>块状元素</div>
+    <div>块状元素</div>
+    <div>块状元素</div>
+    <div>块状元素</div> -->
+
+    <!-- 没有有宽高属性，不会独占一行 -->
+    <span>行内元素</span>
+</body>
+</html>

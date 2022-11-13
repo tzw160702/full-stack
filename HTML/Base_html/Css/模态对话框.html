@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* .hide{
+            display: none;
+        } */
+        .shadow{
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            /* background-color: black;
+            /* 范围 0~1 之间*/
+            /* opacity: 0.4; */
+            /* 黑色背景+透明度 */
+            background-color: rgba(0,0,0,0.6);
+            /* 盒子标签定义优先级 z-index的值可以随便给 z-index最上层的值最大 */
+            z-index: 8;
+        }
+        .modal{
+            width: 400px;
+            height: 300px;
+            background-color: #ddd;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -150px;
+            margin-left: -200px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="hide">对话框</div> -->
+    <input type="button", value="添加">
+    <div class="shadow"></div>
+    <div class="modal">
+        <p>用户名：<input type="text"></p>
+        <p>密码：<input type="text"></p>
+    </div>
+    <div style="height: 5000px;"></div>
+</body>
+</html>

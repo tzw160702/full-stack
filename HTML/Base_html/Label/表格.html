@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表格</title>
+</head>
+<body>
+    <!-- 表格基本操作 -->
+    <!-- 表格标签 -->
+    <table border="2">
+        <!-- 表头 -->
+        <tr>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+        </tr>
+        <!-- 内容 -->
+        <tr>
+            <td>汤正伟</td>
+            <td>18</td>
+            <td>男</td>
+        </tr>
+        <!-- 内容 -->
+        <tr>
+            <td>汤正伟</td>
+            <td>18</td>
+            <td>男</td>
+        </tr>
+    </table>
+    <!-- 表格标签 -->
+    <!-- 推荐使用这种方法，将表头和内容都写上 -->
+    <table border="1">
+        <!-- 表头 -->
+        <thead>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+        </thead>
+        <!-- 内容 -->
+        <tbody>
+            <td>汤正伟</td>
+            <td>18</td>
+            <td>男</td>
+        </tbody>
+    </table>
+
+    <!-- 合并单元格 -->
+    <table border="2">
+        <!-- 表头 -->
+        <tr>
+            <!-- 横向合并单元格 -->
+            <th colspan="2">姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+        </tr>
+        <!-- 内容 -->
+        <tr>
+            
+            <!-- 纵向合并单元格 然后删除单元格-->
+            <td>汤正伟</td>
+            <td rowspan="2">18</td>
+            <td>男</td>
+        </tr>
+        <tr>
+            <td>汤正伟</td>
+            <!-- <td>18</td> -->
+            <td>男</td>
+        </tr>
+        <tr>
+            <td>汤正伟</td>
+            <td>18</td>
+            <td>男</td>
+        </tr>
+    </table>
+
+
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>背景图片</title>
+    <style>
+        .image{
+            background-image: url('../images/fdfd5cd88.gif');
+            width: 120px;
+            height: 80px;
+            /* 超出.gif 本身图片大小之后不重复 */
+            background-repeat: no-repeat ;
+        }
+        .image2{
+            background-image: url('../images/397cdea92de04f76b186a53ab14e440d!400x400.jpeg');
+            width: 80px;
+            height: 80px;
+            /* 调整指针位置，显示图片具体位置部分 */
+            background-position: 0 0;
+        }
+        .image3{
+            /* 一行写完 */
+            background: url('../images/20220424.png')  -138px -124px no-repeat;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="image"></div>
+    <div class="image2"></div>
+    <div class="image3"></div>
+</body>
