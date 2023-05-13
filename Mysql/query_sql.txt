@@ -1,0 +1,197 @@
+-- 1.每个部门最高薪水的人员名称
+-- SELECT 
+-- 	e.ENAME, t.maxsal
+-- from
+-- 	(select DEPTNO, MAX(sal) maxsal FROM 	`EMP` GROUP BY DEPTNO) t
+-- LEFT JOIN
+-- 	`EMP` e
+-- on 
+-- 	e.SAL = t.maxsal AND t.DEPTNO = e.DEPTNO;
+	
+-- 2. 那些人的薪水在部门的平均薪水之上
+-- SELECT 
+-- 	e.ENAME, e.SAL '高于平均薪水'
+-- from
+-- 	(select DEPTNO, avg(SAL) avgsal FROM `EMP` GROUP BY DEPTNO) t
+-- JOIN
+-- 	`EMP` e
+-- on 
+-- 	e.SAL > t.avgsal  and t.DEPTNO = e.DEPTNO;
+	
+-- 3. 部门中所有人的平均薪水等级
+-- SELECT 
+-- 	g.deptno, g.avgsal, d.DNAME
+-- FROM
+-- 	(SELECT
+-- 		t.DEPTNO deptno, AVG(t.grade) avgsal
+-- 	 FROM
+-- 		 (SELECT 
+-- 			 e.ENAME, e.SAL, e.DEPTNO, s.GRADE grade
+-- 		  FROM
+-- 			 `EMP` e
+-- 		 JOIN
+-- 			`SALGRADE` s
+-- 		 on 
+-- 			e.SAL BETWEEN s.LOSAL and s.HISAL) t
+-- 	 GROUP BY
+-- 		DEPTNO) g
+-- JOIN 
+-- 	`DEPT` d
+-- on 
+-- 	g.DEPTNO = d.DEPTNO;
+
+-- 无需临时表
+-- SELECT 
+-- 	 e.DEPTNO, avg(s.GRADE) avggrade
+-- FROM
+-- 	 `EMP` e
+-- JOIN
+-- 	`SALGRADE` s
+-- on 
+-- 	e.SAL BETWEEN s.LOSAL and s.HISAL
+-- GROUP BY
+-- 	e.DEPTNO;
+
+-- 4.不准用max取得最高薪水
+-- SELECT ename, sal FROM `EMP` ORDER BY sal DESC LIMIT 1;
+
+-- 5.取得平均薪水最高的部门编号
+-- SELECT DEPTNO, avg(SAL) avg_sal FROM `EMP` GROUP BY deptno ORDER BY avg_sal DESC LIMIT 1;
+-- SELECT DEPTNO, avg(SAL) avg_sal FROM `EMP` GROUP BY deptno HAVING avg_sal = (SELECT max(t. avg_sal) from (SELECT DEPTNO, avg(SAL) avg_sal FROM `EMP` GROUP BY deptno) t);
+
+-- 6. 取得平均薪水最高的部门名称
+-- SELECT t.DEPTNO, t.avg_sal, d.DNAME from (SELECT DEPTNO, AVG(SAL) avg_sal FROM `EMP` GROUP BY DEPTNO) t JOIN `DEPT` d ON t.DEPTNO = d.DEPTNO ORDER BY t.avg_sal DESC LIMIT 1;
+-- SELECT e.DEPTNO, AVG(e.SAL) avg_sal, d.DNAME FROM `EMP` e JOIN `DEPT` d ON e.DEPTNO = d.DEPTNO GROUP BY DEPTNO  HAVING avg_sal = (SELECT MAX(t.avg_sal) FROM (SELECT AVG(SAL) avg_sal FROM `EMP` GROUP BY deptno) t);
+-- 
+
+-- 7. 求平均薪水的等级最低的部门名称
+
+-- SELECT t.sal_avg, t.dname, s.grade  FROM (SELECT avg(e.SAL) sal_avg, d.DNAME dname FROM `EMP` e
+-- JOIN `DEPT` d ON e.DEPTNO = d.DEPTNO GROUP BY d.DNAME) t JOIN `SALGRADE` s ON	t.sal_avg BETWEEN  s.LOSAL AND s.HISAL
+-- HAVING s.grade = (
+-- 	SELECT MIN(t2.grade) from (
+-- 			SELECT t.sal_avg sal_avg, t.dname, s.grade grade  FROM (SELECT avg(e.SAL) sal_avg, d.DNAME dname FROM `EMP` e JOIN `DEPT` d
+-- 			ON e.DEPTNO = d.DEPTNO GROUP BY d.DNAME) t JOIN `SALGRADE` s ON	sal_avg BETWEEN  s.LOSAL AND s.HISAL
+-- 			) t2
+-- );
+
+-- 8. 取比普通员工（员工代码没有在mgr字段上出现的）的最高薪水还要高的领导人姓名
+-- SELECT ENAME, SAL FROM `EMP` where SAL > (SELECT max(SAL) FROM `EMP` WHERE EMPNO NOT IN (
+-- SELECT DISTINCT MGR FROM `EMP` WHERE MGR IS NOT NULL));
+
+-- 9. 取得最高薪水的前5名员工
+-- SELECT ENAME, SAL FROM `EMP`  ORDER BY SAL DESC LIMIT 5;
+
+-- 10. 取最高薪水6-10的员工
+-- select ENAME from `EMP` ORDER BY SAL DESC LIMIT 5,5;
+
+-- 11. 取最后入职的5名员工
+-- SELECT ENAME, HIREDATE  FROM `EMP` ORDER BY HIREDATE DESC LIMIT 5;
+
+-- 12. 取每个薪水等级有多少员工
+-- select t.grade, count(t.grade) '人数' from (SELECT s.grade, e.ENAME, e.SAL FROM `EMP` e JOIN 	`SALGRADE` s ON e.SAL BETWEEN s.LOSAL AND s.HISAL) t GROUP BY t.grade;
+
+-- SELECT s.grade, count(*) FROM `EMP` e JOIN 	`SALGRADE` s ON e.SAL BETWEEN s.LOSAL AND s.HISAL GROUP BY s.grade;
+
+-- 13. 列出所有员工及领导的名字
+-- SELECT a.ENAME '员工', b.ENAME '领导' FROM `EMP` a LEFT JOIN `EMP` b ON a.MGR = b.EMPNO;
+
+-- 14. 列出受雇日期早于直接上级的所有员工编号, 姓名, 部门名称
+-- SELECT a.EMPNO, a.ENAME '员工', a.HIREDATE '员工入职日期', b.ENAME '领导', b.HIREDATE '领导入职日期', d.DNAME FROM `EMP` a JOIN `EMP` b ON a.MGR = b.EMPNO and a.HIREDATE < b.HIREDATE JOIN `DEPT` d ON a.DEPTNO =  d.DEPTNO; 
+
+-- 15. 列出部门名称和这些部门的员工信息，同时列出那些没有员工的部门
+-- SELECT e.*, d.*
+-- FROM `EMP` e
+-- RIGHT JOIN `DEPT` d
+-- ON
+-- 	e.DEPTNO = d.DEPTNO
+
+-- 16. 列出至少有5个员工的部门
+-- SELECT t.DEPTNO, t.human FROM (SELECT DEPTNO, COUNT(*) human FROM `EMP` GROUP BY DEPTNO) t WHERE t.human >= 5; 
+-- SELECT DEPTNO, COUNT(*) FROM `EMP` GROUP BY DEPTNO HAVING COUNT(*) >= 5;
+
+-- 17. 列出薪资比 SMITH 多的所有员工信息
+-- SELECT * FROM `EMP` WHERE sal > (SELECT sal FROM `EMP` WHERE ENAME = 'SMITH');
+
+-- 18. 列出所有'CLERK'(办事员)的姓名及部门名称，部门人数
+-- SELECT t1.*, t2.hunam_num
+-- FROM (
+-- 	SELECT e.DEPTNO DEPTNO, e.ENAME, d.DNAME FROM `EMP` e JOIN `DEPT`d ON e.DEPTNO = d.DEPTNO AND e.JOB = 'CLERK' 
+-- 	) t1
+-- JOIN 
+-- 	(SELECT DEPTNO, COUNT(*) hunam_num FROM `EMP` GROUP BY DEPTNO) t2 
+-- ON
+-- 	t1.deptno = t2.DEPTNO;
+
+-- 19. 列出最低薪资大于1500 的各种工作及从事此工作的全部雇员人数
+-- SELECT job, count(*) FROM `EMP` GROUP BY job HAVING min(SAL) > 1500;
+
+-- 20.列出部门‘SALES’ 销售部 工作的员工的姓名， 嘉定不知道销售部的部门编号
+-- SELECT ename FROM `EMP` WHERE DEPTNO = (SELECT DEPTNO FROM `DEPT` WHERE DNAME = 'SALES');
+
+-- 21. 列出薪资高于公司平均薪资的所有员工，所在部门，上级领导，雇员的薪资等级
+-- SELECT 
+-- 		t1.a_ename '员工', t1.b_ename '领导', t1.d_dname '部门', t1.a_sal '薪资', t2.avg_sal '平均薪资', t1.s_grade '薪资等级'
+-- FROM (
+-- 	SELECT a.ENAME a_ename, b.ENAME b_ename, d.DNAME d_dname, a.SAL a_sal, s.grade s_grade FROM `EMP` a LEFT JOIN `EMP` b ON a.MGR = b.EMPNO JOIN `DEPT` d ON a.DEPTNO = d.DEPTNO JOIN `SALGRADE` s ON a.SAL BETWEEN s.LOSAL AND s.HISAL WHERE a.SAL > (SELECT FLOOR(avg(sal)) FROM `EMP`)) t1
+-- JOIN (
+-- 	SELECT FLOOR(avg(SAL)) avg_sal FROM `EMP`
+-- ) t2
+-- ORDER BY t1.a_sal;  
+
+-- 22. 列出与 ’SCOTT‘ 从事相同工作的所有员工及部门名称
+-- SELECT e.JOB, e.ENAME, d.DNAME FROM `EMP` e JOIN `DEPT` d ON e.DEPTNO = d.DEPTNO WHERE JOB = (SELECT JOB FROM `EMP` WHERE ENAME = 'SCOTT') and e.ENAME != 'SCOTT';
+
+-- 23. 查出薪资等于30部门中员工的薪资的其它员工姓名和薪资
+-- SELECT ENAME, SAL FROM `EMP` WHERE SAL IN (SELECT DISTINCT SAL FROM	`EMP` WHERE DEPTNO = 30) AND DEPTNO != 30;
+ 
+-- 24. 列出薪资高于在30部门工作的所有员工的薪资的员工姓名和薪资，部门名称
+-- SELECT e.ENAME, e.SAL, d.DNAME, e.DEPTNO FROM `EMP` e JOIN `DEPT` d ON e.DEPTNO = d.DEPTNO WHERE sal > (SELECT MAX(sal) FROM `EMP` WHERE DEPTNO = 30);
+
+-- 26. 查找每个部门工作的员工数, 平均工资, 和平均服务期限，没有员工的部门， 部门人数是0
+-- SELECT COUNT(t.ename), AVG(t.sal), AVG(t.date)
+-- FROM (
+-- SELECT d.DEPTNO deptno, e.ENAME ename, e.SAL sal, e.HIREDATE date FROM `EMP` e RIGHT JOIN `DEPT` d ON d.DEPTNO = e.DEPTNO
+-- ) t
+-- GROUP BY t.deptno;
+ 
+-- SELECT d.DEPTNO deptno, COUNT(e.ENAME) human, IFNULL(avg(e.SAL), 0) sal, IFNULL(avg(TIMESTAMPDIFF(YEAR, e.HIREDATE, NOW())), 0) days FROM `EMP` e RIGHT JOIN `DEPT` d ON d.DEPTNO = e.DEPTNO GROUP BY deptno; 
+
+-- 27. 列出所有员工的姓名部门名称和工资
+-- SELECT e.ENAME, e.SAL, d.DNAME FROM `EMP` e JOIN `DEPT` d ON e.DEPTNO = d.DEPTNO; 
+
+-- 28. 列出所有部门的详细信息和人数
+-- SELECT d.*, count(e.DEPTNO) FROM `DEPT` d LEFT JOIN `EMP` e ON d.DEPTNO = e.DEPTNO GROUP BY d.DEPTNO;
+
+-- 29. 查询各种工作的最低工资及从事此工作的员工
+-- SELECT 
+-- 	e2.JOB, e1.ENAME, e2.min_sal 
+-- FROM 
+-- 	(SELECT JOB, MIN(SAL) min_sal FROM `EMP` GROUP BY JOB) e2
+-- JOIN `EMP` e1
+-- ON e2.JOB = e1.JOB AND e2.min_sal = e1.sal;
+
+-- 30. 查询各个部门的manager(领导)的最低薪资
+-- SELECT DEPTNO, min(SAL) FROM 	`EMP` WHERE JOB = 'MANAGER' GROUP BY  DEPTNO;
+
+-- 31. 查询所有员工的年工资，按年薪从低到高排序
+-- SELECT ENAME, sal*12 yearsal FROM `EMP` ORDER BY yearsal DESC; 
+
+-- 32. 查询所有员工领导的薪水超过3000的员工名称与领导名称
+-- SELECT e.ename, e2.ENAME, e2.SAL FROM `EMP` e JOIN `EMP` e2 on e.MGR = e2.EMPNO AND e2.SAL > 3000;  
+
+-- 33. 求出部门名称中带’s‘字符的部门员工的工资合计，部门人数
+-- SELECT t.DNAME '部门', FORMAT(IFNULL(SUM(e.SAL), 0), 0) '员工合计工资', COUNT(e.ENAME) '人数'  
+-- FROM
+-- 	`EMP` e
+-- RIGHT JOIN `DEPT` t     # RIGHT JOIN (SELECT DEPTNO, DNAME FROM `DEPT` WHERE DNAME LIKE '%S%') t
+-- ON t.DEPTNO = e.DEPTNO
+-- WHERE t.DNAME LIKE '%S%'
+-- GROUP BY t.DNAME;
+
+-- 34. 给任职日期超过三十年的员工加薪10%
+-- SELECT ENAME, SAL + SAL*0.1 FROM `EMP` WHERE TIMESTAMPDIFF(YEAR, HIREDATE, NOW()) > 30; 
+-- UPDATE `EMP` SET SAL = SAL + SAL*0.1 WHERE TIMESTAMPDIFF(YEAR, HIREDATE, NOW()) > 30; 
+
+
+
