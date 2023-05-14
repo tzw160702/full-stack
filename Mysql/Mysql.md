@@ -13,23 +13,23 @@
 >
 > **sql执行先后顺序：**
 >
-> > **(8)**SELECT	**(9)**DISTINCT	**(11)**  <Top NUM>   <select list>            
+> > **(8)** SELECT **(9)** DISTINCT **(11)** Top NUM [select list]            
 > >
-> > **(1)**FROM	[left_table] 
+> > **(1)** FROM [left_table] 
 > >
-> > **(3)**<join_type> JOIN <right_table>
+> > **(3)** [join_type] JOIN [right_table]
 > >
-> > **(2)**  ON <join condition> 
+> > **(2)** ON [join condition] 
 > >
-> > **(4)** WHERE <where condition>
+> > **(4)** WHERE [where condition]
 > >
-> > **(5)**GROUP BY <group_by_list>
+> > **(5)** GROUP BY [group_by_list]
 > >
-> > **(6)**WITH <CUBE | RollUP>
+> > **(6)** WITH [CUBE | RollUP]
 > >
-> > **(7)**HAVING <having_condition>
+> > **(7)** HAVING [having_condition]
 > >
-> > **(10)**ORDER　BY <order_by_list>
+> > **(10)** ORDER BY [order_by_list]
 
 ## 数据表：
 
